@@ -1,0 +1,48 @@
+
+#        d8888 888          888                             d8b          888
+#       d88888 888          888                             Y8P          888
+#      d88P888 888          888                                          888
+#     d88P 888 888  .d8888b 88888b.   .d88b.  88888b.d88b.  888 .d8888b  888888
+#    d88P  888 888 d88P"    888 "88b d8P  Y8b 888 "888 "88b 888 88K      888
+#   d88P   888 888 888      888  888 88888888 888  888  888 888 "Y8888b. 888
+#  d8888888888 888 Y88b.    888  888 Y8b.     888  888  888 888      X88 Y88b.
+# d88P     888 888  "Y8888P 888  888  "Y8888  888  888  888 888  88888P'  "Y888
+
+# Alchemist Theme by Aaron Fulton 
+# version 1.0 
+# Inspired by my love for purple :3
+
+# Notes:
+# This is temp for now I like the colors but I think they are
+# very muted they look nice in a IDE but but in a terminal.
+
+# 16-Color Palette
+color0 #1b1b1b
+color1 #421d21
+color2 #274727
+color3 #534a26
+color4 #303a52
+color5 #2b2547
+color6 #294b4b
+color7  #424242
+
+color8 #343434
+color9 #9b575f
+color10 #559255
+color11 #a89859
+color12 #536aa0
+color13 #625797
+color14 #629191
+color15 #828282
+
+
+# Additional Colors (Optional for 256-color setups)
+color16                 #2a2a2a
+color17                 #432121
+color18                 #2f433f
+color19                 #433f2f
+color20                 #2f3341
+color21                 #3f3b4f
+color22                 #2f3f3f
+color23                 #4f4f4f
+

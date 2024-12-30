@@ -37,9 +37,13 @@ This repository contains configurations for my NixOS instances across devices.
 - **Mattermost**
 - **Vesktop**
 
+### Gaming
+- **Steam**
+- **Prism Launcher**
+
 ## Theming
 
-- **Alchemist Theme**: A custom-made theme designed for a personalized and cohesive experience.
+- **Alchemist Theme**: A custom-made theme designed so I can experince purple more often.
 
 ## Development Shells
 
