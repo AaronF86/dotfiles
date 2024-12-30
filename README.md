@@ -35,7 +35,7 @@ This repository contains configurations for my NixOS instances across devices.
 
 ### Communication Tools
 - **Mattermost**
-- **Vestop**
+- **Vesktop**
 
 ## Theming
 
