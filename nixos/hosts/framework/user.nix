@@ -1,3 +1,5 @@
+#hosts/framework/user.nix
+
 { config, lib, inputs, ...}:
 
 {

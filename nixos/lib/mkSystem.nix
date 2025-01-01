@@ -1,3 +1,5 @@
+#lib/mkSystem.nix
+
 { self, ... } @ inputs: name: system: inputs.nixpkgs.lib.nixosSystem (
   {
     inherit system;

@@ -1,11 +1,14 @@
-{ pkgs, lib, config, ... }:
+{ lib, config, pkgs, ... }:
 
-with lib;
-let cfg = config.modules.ghostty;
+let
+  ghostty = import inputs.ghostty;
+in
+{
+  options = {
+    modules.ghostty.enable = lib.mkEnableOption "Enable ghostty";
+  };
 
-in {
-    options.modules.ghostty = { enable = mkEnableOption "ghostty"; };
-    config = mkIf cfg.enable {
-            environment.systemPackages = [ ghostty.packages.x86_64-linux.default ];
-    };
+  config = lib.mkIf config.modules.ghostty.enable {
+    environment.systemPackages = [ ghostty.packages.x86_64-linux.default ];
+  };
 }
