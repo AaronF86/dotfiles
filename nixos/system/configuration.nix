@@ -87,7 +87,7 @@
     users.users.aaron = {
         isNormalUser = true;
         description = "Aaron Fulton";
-        extraGroups = [ "input" "wheel","networkmanager" ];
+        extraGroups = ["input" "wheel" "networkmanager"];
     };
 
     # Set up networking and secure it

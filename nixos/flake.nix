@@ -25,28 +25,29 @@
     lib = pkgs.lib;
 
     # Helper function to create a system configuration
-    mkSystem = { pkgs, hostname }: 
-      pkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          { networking.hostName = hostname; }
-          # General configuration (users, networking, sound, etc)
-          ./system/configuration.nix
-          # Hardware config (bootloader, kernel modules, filesystems, etc)
-          ./hosts/${hostname}/hardware-configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useUserPackages = true;
-              useGlobalPkgs = true;
-              extraSpecialArgs = { inherit inputs; };
-              # Home manager config (configures programs like firefox, zsh, eww, etc)
-              users.aaron = ./hosts/${hostname}/user.nix;
-            };
-          }
-        ];
-        specialArgs = { inherit inputs; };
-      };
+mkSystem = { pkgs, hostname }: 
+  nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    modules = [
+      { networking.hostName = hostname; }
+      # General configuration (users, networking, sound, etc)
+      ./system/configuration.nix
+      # Hardware config (bootloader, kernel modules, filesystems, etc)
+      ./hosts/${hostname}/hardware-configuration.nix
+      home-manager.nixosModules.home-manager
+      {
+        home-manager = {
+          useUserPackages = true;
+          useGlobalPkgs = true;
+          extraSpecialArgs = { inherit inputs; };
+          # Home manager config (configures programs like firefox, zsh, eww, etc)
+          users.aaron = ./hosts/${hostname}/user.nix;
+        };
+      }
+    ];
+    specialArgs = { inherit inputs; };
+  };
+
 
   in {
     nixosConfigurations = {
