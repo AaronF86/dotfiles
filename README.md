@@ -13,7 +13,7 @@ This repository contains configurations for my NixOS instances across devices.
 ### Desktop Environment
 - **Environment**: KDE Plasma
 - **Terminal Emulator**: Ghostty
-- **Shell**: Bash (default)
+- **Shell**: fish
 - **IDEs**:
   - VSCode
   - RustRover
@@ -26,8 +26,8 @@ This repository contains configurations for my NixOS instances across devices.
   - Java 21 with Gradle and Maven
   - Python 3
   - Haskell
-  - ASK
-  - Syrup
+  - ASK - *todo*
+  - Syrup - *todo*
 - **Development Tools**:
   - Docker
   - Git
@@ -47,6 +47,7 @@ This repository contains configurations for my NixOS instances across devices.
 
 ## Development Shells
 
+*todo*
 Utilize `devShells` for per-project environments, preconfigured for:
 - Rust development
 - Java projects
