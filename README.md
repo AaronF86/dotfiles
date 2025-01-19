@@ -28,6 +28,7 @@ This repository contains configurations for my NixOS instances across devices.
   - Haskell
   - ASK - *todo*
   - Syrup - *todo*
+  - MIPS
 - **Development Tools**:
   - Docker
   - Git

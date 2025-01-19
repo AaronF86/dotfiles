@@ -1,3 +1,3 @@
 git add *
-sudo nixos-rebuild --flake .#desktop
-sudo home-manager --flake .#user
+sudo nixos-rebuild --flake ~/Dotfiles/nixos.#desktop
+sudo home-manager --flake ~/Dotfiles/nixos.#user

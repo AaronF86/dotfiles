@@ -18,7 +18,7 @@
   };
 
   # Graphics Configuration
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     modesetting.enable = true;
@@ -35,6 +35,9 @@
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
   };
+
+
+
 
   # System Version
   system.stateVersion = "24.11";

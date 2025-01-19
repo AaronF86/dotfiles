@@ -1,12 +1,12 @@
 {
-  description = "Being a simple flexible Nix flake.";
+  description = "A simple and flexible Nix flake.";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
   };
 
-  outputs = { self, nixpkgs, home-manager }: 
+  outputs = { self, nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -17,10 +17,10 @@
           modules = [
             ./hosts/desktop.nix
             ./users/user.nix
+            home-manager.nixosModules.home-manager
             {
               nixpkgs.config.allowUnfree = true;
             }
-            home-manager.nixosModules.home-manager
           ];
         };
 
@@ -29,17 +29,17 @@
           modules = [
             ./hosts/laptop.nix
             ./users/user.nix
+            home-manager.nixosModules.home-manager
             {
               nixpkgs.config.allowUnfree = true;
             }
-            home-manager.nixosModules.home-manager
           ];
         };
       };
 
       homeConfigurations = {
         user = home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgs;  # Pass pkgs here
+          pkgs = nixpkgs.legacyPackages.${system};
           modules = [
             ./home-manager/config.nix
             {

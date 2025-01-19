@@ -16,6 +16,8 @@
     pkgs.zulu #Java 21
 
     #Uni Tools
-    mars-mips #MIPS Assembler :3
+    pkgs.mars-mips #MIPS Assembler :3
+    pkgs.armips
   ];
+virtualisation.docker.enable = true;
 }

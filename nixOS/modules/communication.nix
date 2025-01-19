@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
 
 {
-  environment.systemPackages = [ pkgs.mattermost pkgs.vesktop ];
+  environment.systemPackages = [ pkgs.mattermost-desktop pkgs.vesktop ];
 }
