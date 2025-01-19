@@ -19,6 +19,7 @@
       vlc
       firefox
       home-manager
+      obsidian
     ];
   };
 }
