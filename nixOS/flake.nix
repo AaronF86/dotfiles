@@ -16,7 +16,7 @@
           system = system;
           modules = [
             ./hosts/desktop.nix
-            ./users/user.nix
+            ./users.nix
             home-manager.nixosModules.home-manager
             {
               nixpkgs.config.allowUnfree = true;
@@ -28,7 +28,7 @@
           system = system;
           modules = [
             ./hosts/laptop.nix
-            ./users/user.nix
+            ./users.nix
             home-manager.nixosModules.home-manager
             {
               nixpkgs.config.allowUnfree = true;

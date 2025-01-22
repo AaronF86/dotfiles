@@ -1,0 +1,10 @@
+{
+    "git.autofetch": true,
+    "files.autoSave": "afterDelay",
+    "workbench.colorTheme": "onehalf-dark",
+    "workbench.iconTheme": "file-icons",
+    "workbench.editorAssociations": {
+        "{git,gitlens,git-graph}:/**/*.{md,csv,svg}": "default"
+    },
+    "workbench.productIconTheme": "feather-vscode"
+}

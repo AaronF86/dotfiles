@@ -20,6 +20,7 @@
       firefox
       home-manager
       obsidian
+      fishPlugins.tide
     ];
   };
 }

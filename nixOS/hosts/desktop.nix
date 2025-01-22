@@ -36,9 +36,6 @@
     dedicatedServer.openFirewall = true;
   };
 
-
-
-
   # System Version
   system.stateVersion = "24.11";
 }

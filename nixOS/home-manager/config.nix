@@ -6,6 +6,8 @@
 
   imports = [
     ./programs/fish.nix
+    ./programs/ghostty.nix
+    ./programs/vscode.nix
   ];
 
   home.packages = with pkgs; [
@@ -14,5 +16,5 @@
     ripgrep
   ];
 
-  home.stateVersion = "23.05";
+  home.stateVersion = "25.05";
 }
