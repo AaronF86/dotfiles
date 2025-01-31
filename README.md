@@ -59,3 +59,6 @@ Utilize `devShells` for per-project environments, preconfigured for:
 - Create a neoVim Config
 - Look in to config for server host
 
+## Bugs
+
+- USB C charging Handshake not working? 

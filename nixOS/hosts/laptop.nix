@@ -10,10 +10,9 @@
     ./hardware-configuration-laptop.nix
   ];
 
-
- #Taken from ScottCowe
+  # Taken from ScottCowe
   hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true; 
+  hardware.bluetooth.powerOnBoot = true;
 
   services.blueman.enable = true;
 
@@ -24,14 +23,16 @@
   };
 
   security.rtkit.enable = true;
+
   services.pipewire = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
     pulse.enable = true;
     jack.enable = true;
   };
- 
 
   networking.useDHCP = false;
   networking.networkmanager.enable = true;
@@ -43,4 +44,4 @@
   };
 
   system.stateVersion = "24.11";
-
+}
