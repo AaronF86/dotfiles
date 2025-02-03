@@ -14,6 +14,7 @@
     pkgs.docker
     pkgs.git
     pkgs.zulu #Java 21
+    pkgs.texlive.combined.scheme-full 
 
     #Uni Tools
     pkgs.mars-mips #MIPS Assembler :3
