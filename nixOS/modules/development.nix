@@ -15,7 +15,7 @@
     pkgs.git
     pkgs.zulu #Java 21
     pkgs.texlive.combined.scheme-full 
-
+    pkgs.gcc
     #Uni Tools
     pkgs.mars-mips #MIPS Assembler :3
     pkgs.armips

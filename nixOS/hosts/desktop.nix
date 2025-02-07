@@ -38,4 +38,19 @@
 
   # System Version
   system.stateVersion = "24.11";
+
+    environment.etc."ssh/id_ed25519_desktop".source = "/home/your_user/.ssh/id_ed25519_desktop";
+  environment.etc."ssh/id_ed25519_desktop.pub".source = "/home/your_user/.ssh/id_ed25519_desktop.pub";
+
+  environment.etc."ssh/config".text = ''
+    Host github.com
+      HostName github.com
+      User git
+      IdentityFile ~/.ssh/id_ed25519_desktop
+
+    Host gitlab.cis.strath.ac.uk
+      HostName gitlab.cis.strath.ac.uk
+      User git
+      IdentityFile ~/.ssh/id_ed25519_desktop
+  '';
 }
