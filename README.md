@@ -18,7 +18,7 @@ This repository contains configurations for my NixOS instances across devices.
   - VSCode
   - RustRover
   - IntelliJ IDEA
-  - NeoVim (planned for future use)
+  - NeoVim
 
 ### SDKs and Development Tools
 - **Programming Languages and SDKs**:
@@ -56,9 +56,4 @@ Utilize `devShells` for per-project environments, preconfigured for:
 
 ## Future Plans
 
-- Create a neoVim Config
 - Look in to config for server host
-
-## Bugs
-
-- USB C charging Handshake not working? 

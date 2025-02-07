@@ -19,6 +19,7 @@
     #Uni Tools
     pkgs.mars-mips #MIPS Assembler :3
     pkgs.armips
+    pkgs.luajit
   ];
 virtualisation.docker.enable = true;
 }

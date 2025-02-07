@@ -32,8 +32,5 @@ VSCode config is saved via the built-in sync feature (due to profiles not being 
 ### Themes
 - Prism and Obsidian themes? Maybe
 
-### NVim
-- Finally do NVim config
-
 ### Tide
 - Find a way to move Tide to the repo
