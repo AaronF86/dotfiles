@@ -2,6 +2,7 @@
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; #I need to move this to s system dir at one point :3
+  
   users.users.aaron = {
     isNormalUser = true;
     description = "Aaron's User Account";

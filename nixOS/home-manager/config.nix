@@ -8,6 +8,7 @@
     ./programs/fish.nix
     ./programs/ghostty.nix
     ./programs/vscode.nix
+    ./programs/nvim.nix
   ];
 
   home.packages = with pkgs; [
@@ -15,6 +16,10 @@
     htop
     ripgrep
   ];
+
+  home.sessionVariables = {
+    PATH = "${pkgs.cargo}/bin:$HOME/.cargo/bin:$PATH";
+  };
 
   home.stateVersion = "25.05";
 }

@@ -10,6 +10,8 @@
         src = pkgs.fishPlugins.tide;
       }
     ];
+
+    # Custom shell initialization
+    interactiveShellInit = "";
   };
 }
-
