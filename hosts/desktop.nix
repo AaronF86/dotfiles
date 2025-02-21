@@ -18,9 +18,9 @@
   };
 
   # localisation 
+  console.keyMap = "us";
+  console.font = "Lat2-Terminus16";
   i18n = {
-    consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "us";
     defaultLocale = "en_GB.UTF-8";
   };
 
@@ -62,4 +62,6 @@
       User git
       IdentityFile ~/.ssh/id_ed25519_desktop
   '';
+
+    swapDevices = [{ device = "/swapfile"; size = 2048; }];
 }
