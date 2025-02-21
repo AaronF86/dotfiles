@@ -5,6 +5,7 @@
     enable = true;
     viAlias = true;
     vimAlias = true;
+    defaultEditor = true;
     plugins = with pkgs; [
       vimPlugins.packer-nvim
     ];

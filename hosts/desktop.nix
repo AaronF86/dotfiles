@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../modules/kde.nix
+    ../modules/gnome.nix
     ../modules/terminal.nix
     ../modules/development.nix
     ../modules/gaming.nix
@@ -17,9 +17,18 @@
     efiSysMountPoint = "/boot";
   };
 
+  # localisation 
+  i18n = {
+    consoleFont = "Lat2-Terminus16";
+    consoleKeyMap = "us";
+    defaultLocale = "en_GB.UTF-8";
+  };
+
   # Graphics Configuration
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.xone.enable = true;
+
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;  # Set to true for laptops to save power
