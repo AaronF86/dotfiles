@@ -5,16 +5,11 @@
   home.homeDirectory = "/home/aaron";
 
   imports = [
-    ./programs/fish.nix
-    ./programs/ghostty.nix
-    ./programs/vscode.nix
-    ./programs/nvim.nix
+    ../modules/git.nix
+    ../modules/ghostty.nix
   ];
 
   home.packages = with pkgs; [
-    git
-    htop
-    ripgrep
   ];
 
   home.sessionVariables = {

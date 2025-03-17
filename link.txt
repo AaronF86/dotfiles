@@ -1,6 +1,0 @@
-rm -rf ./.config/ghostty
-ln -s ./dotfiles/ghostty/ ./.config/
-rm -rf ./.config/fish
-ln -s ./dotfiles/fish ./config/fish
-
-Remember to turn on cloud sync for VSCode on a new system.
