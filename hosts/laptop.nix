@@ -2,7 +2,11 @@
 
 {
   imports = [
-    ./hardware-configuration-laptop-nix # Hardware configuration
+    ./hardware-configuration-laptop.nix # Hardware configuration
+    ../common.nix # Common configuration for all systems
+    ../modules/hyperland.nix # Hyperland-specific configuration
+    #../modules/gnome.nix # Gnome-specific configuration
+    ../modules/temp.nix # Temporary configuration
   ];
 
 

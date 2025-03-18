@@ -17,6 +17,7 @@
     nixpkgs-fmt        # Formatter for Nix files
     luajit
     gradle
+    vscode
     maven
     python3
     ghc

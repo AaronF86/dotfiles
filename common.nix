@@ -32,8 +32,11 @@
     tree
     htop
     fastfetch
+    neovim
+    home-manager
   ];
 
+  programs.firefox.enable = true;
     virtualisation.docker.enable = true;
 
   #sound
