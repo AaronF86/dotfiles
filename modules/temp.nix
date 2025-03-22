@@ -4,6 +4,8 @@
 
 {
   environment.systemPackages = with pkgs; [
+  
+  
      prismlauncher 
      linuxKernel.packages.linux_zen.xone #drivers for xbox one controller
     jetbrains.idea-ultimate
@@ -24,7 +26,6 @@
     docker
     git
     zulu               # Java 21
-    texlive.combined.scheme-full
     gcc
     # University tools
     mars-mips          # MIPS assembler
@@ -32,6 +33,7 @@
     direnv
       mattermost-desktop 
     vesktop 
+    
     
      ];
   

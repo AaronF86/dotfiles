@@ -36,7 +36,7 @@
     home-manager
   ];
 
-  programs.firefox.enable = true;
+    programs.firefox.enable = true; # in case everything goes to shit
     virtualisation.docker.enable = true;
 
   #sound
