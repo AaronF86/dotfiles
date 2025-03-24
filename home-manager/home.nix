@@ -14,6 +14,7 @@
     ../home-manager/modules/hyperland.nix
         ../home-manager/modules/rofi.nix
         ../home-manager/modules/waybar.nix
+        ../home-manager/modules/fish.nix
 
   ];
 
