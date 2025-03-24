@@ -33,6 +33,7 @@
     direnv
       mattermost-desktop 
     vesktop 
+    obsidian
     
     
      ];
