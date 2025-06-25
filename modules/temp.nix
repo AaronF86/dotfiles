@@ -1,7 +1,13 @@
+# Softwere im keeping for now 
+
 { config, pkgs, ... }: 
+
 {
   environment.systemPackages = with pkgs; [
-    vscode
+  
+  
+     prismlauncher 
+     linuxKernel.packages.linux_zen.xone #drivers for xbox one controller
     jetbrains.idea-ultimate
     jetbrains.rust-rover
     neovim
@@ -13,19 +19,24 @@
     nixpkgs-fmt        # Formatter for Nix files
     luajit
     gradle
+    vscode
     maven
     python3
     ghc
     docker
     git
     zulu               # Java 21
-    texlive.combined.scheme-full
     gcc
     # University tools
     mars-mips          # MIPS assembler
     armips
+    direnv
+      mattermost-desktop 
+    vesktop 
+    obsidian
     
-  ];
-
-  virtualisation.docker.enable = true;
+    
+     ];
+  
+         programs.fish.enable = true;
 }
