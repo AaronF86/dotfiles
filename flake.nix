@@ -1,73 +1,86 @@
 {
-  description = "being a Nix System flake";
+  description = "being a simple nixos flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixos-config.url = "github:zimbatm/nixos-config";
+    flake-utils.url = "github:numtide/flake-utils";
     home-manager.url = "github:nix-community/home-manager";
-    Bannify = {
-      url = "github:aaronf86/tools?dir=bannify";
-      flake = true;
-    };
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, Bannify, ... }:
+  outputs = { nixpkgs, home-manager, flake-utils, ... }:
   let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs { inherit system; };
-
-    bannifyPackage = Bannify.packages.${system}.default;
-  in {
-    nixosConfigurations = {
-      desktop = nixpkgs.lib.nixosSystem {
-        system = system;
-        modules = [
-          ./hosts/desktop.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.aaron = import ./home-manager/home.nix;
-            };
-          }
-          {
-            environment.systemPackages = [
-              bannifyPackage
+    systems = flake-utils.lib.defaultSystems;
+  in
+  {
+    nixosConfigurations = builtins.listToAttrs (builtins.concatLists (
+      map (system: [
+        {
+          name = "laptop-${system}";
+          value = nixpkgs.lib.nixosSystem {
+            inherit system;
+            
+            modules = [
+              ./hosts/laptop.nix
+              ./modules/common.nix
+              ./users/users.nix
+              home-manager.nixosModules.home-manager
+              {
+                nixpkgs.config.allowUnfree = true;
+                home-manager.useUserPackages = true;
+                home-manager.useGlobalPkgs = true;
+                home-manager.users.aaron = import ./users/aaron.nix;
+              }
             ];
-          }
-        ];
-      };
-
-      laptop = nixpkgs.lib.nixosSystem {
-        system = system;
-        modules = [
-          ./hosts/laptop.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.aaron = import ./home-manager/home.nix;
-            };
-          }
-          {
-            environment.systemPackages = [
-              bannifyPackage
+          };
+        }
+        {
+          name = "desktop-${system}";
+          value = nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [
+              ./hosts/desktop.nix
+              ./modules/common.nix
+              ./users/users.nix
+              home-manager.nixosModules.home-manager
+              {
+                nixpkgs.config.allowUnfree = true;
+                home-manager.useUserPackages = true;
+                home-manager.useGlobalPkgs = true;
+                home-manager.users.aaron = import ./users/aaron.nix;
+              }
             ];
-          }
-        ];
-      };
-    };
+          };
+        }
+        {
+          name = "vps-${system}";
+          value = nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [
+              ./hosts/vps.nix
+              ./modules/common.nix
+              ./users/users.nix
+              home-manager.nixosModules.home-manager
+              {
+                nixpkgs.config.allowUnfree = true;
+                home-manager.useUserPackages = true;
+                home-manager.useGlobalPkgs = true;
+                home-manager.users.aaron = import ./users/aaron.nix;
+              }
+            ];
+          };
+        }
+      ]) systems)
+    );
 
-    homeConfigurations = {
-      aaron = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations = builtins.listToAttrs (map (system: {
+      name = "aaron-${system}";
+      value = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
-        modules = [
-          ./home-manager/home.nix
-        ];
+        modules = [ ./users/aaron.nix ];
       };
-    };
+    }) systems);
   };
+
+  
 }
