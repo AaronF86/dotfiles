@@ -7,4 +7,6 @@
   environment.systemPackages = with pkgs; [
     curl git unzip tree
   ];
+
+ programs.fish.enable = true;
 }

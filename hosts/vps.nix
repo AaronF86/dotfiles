@@ -3,7 +3,7 @@
 {
   imports = [
     ../hardware/vps-hardware-configuration.nix
-    ../services/database.nix
+#    ../services/database.nix
     ../services/nextcloud.nix
   ];
 
@@ -34,12 +34,13 @@ services.openssh = {
   users.users.root.openssh.authorizedKeys.keys =
   [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILskqXdENIae/AIwZnDwEUm11j+xOc8HY45Mdf2zqSU2 aaronfulton86@gmail.com"
-  ]
+  ];
 
   services.fail2ban = {
     enable = true;
     maxretry = 5;
-  }
+  };
 
 
 }
+
