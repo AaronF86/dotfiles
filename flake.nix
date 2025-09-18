@@ -6,9 +6,15 @@
     flake-utils.url = "github:numtide/flake-utils";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # Eko app (client/server) flake
+    eko.url = "github:Kyren223/eko";
   };
 
-  outputs = { nixpkgs, home-manager, flake-utils, ... }:
+  outputs = { nixpkgs, home-manager, flake-utils, zen-browser, ... }@inputs:
   let
     systems = flake-utils.lib.defaultSystems;
   in
@@ -30,6 +36,7 @@
                 home-manager.useUserPackages = true;
                 home-manager.useGlobalPkgs = true;
                 home-manager.users.aaron = import ./users/aaron.nix;
+                home-manager.extraSpecialArgs = { inherit inputs; };
               }
             ];
           };
@@ -38,6 +45,7 @@
           name = "desktop-${system}";
           value = nixpkgs.lib.nixosSystem {
             inherit system;
+            specialArgs = { inherit inputs; };
             modules = [
               ./hosts/desktop.nix
               ./modules/common.nix
@@ -48,6 +56,7 @@
                 home-manager.useUserPackages = true;
                 home-manager.useGlobalPkgs = true;
                 home-manager.users.aaron = import ./users/aaron.nix;
+                home-manager.extraSpecialArgs = { inherit inputs; };
               }
             ];
           };
@@ -66,6 +75,7 @@
                 home-manager.useUserPackages = true;
                 home-manager.useGlobalPkgs = true;
                 home-manager.users.aaron = import ./users/aaron.nix;
+                home-manager.extraSpecialArgs = { inherit inputs; };
               }
             ];
           };
@@ -78,6 +88,7 @@
       value = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
         modules = [ ./users/aaron.nix ];
+        extraSpecialArgs = { inherit inputs; };
       };
     }) systems);
   };
