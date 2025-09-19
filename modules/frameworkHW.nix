@@ -1,0 +1,2 @@
+# Framework Hardware Configuration
+
