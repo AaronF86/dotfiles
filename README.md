@@ -28,15 +28,15 @@ add new .nix file to users directory copy from another user and edit as needed t
 ## Packages
 <Standard packages used across the aaron user config on most machines>
 
-- Browser: [Zen Browser](https://github.com/ZenBrowser)
-- Terminal: [Ghostty](https://github.com/ghostty/ghostty)
+- Browser: [Zen Browser](https://zen-browser.app/)
+- Terminal: [Ghostty](https://ghostty.org/)
 - Shell: [fish](https://fishshell.com/)
 - Editor: [neovim](https://neovim.io/)
 
-- Status Bar: [waybar](https://github.com/swaywm/waybar)
+- Status Bar: [waybar](https://github.com/Alexays/Waybar)
 - Notification Daemon: [dunst](https://dunst-project.org/)
 - File Manager: [thunar](https://docs.xfce.org/xfce/thunar/start)
-- Launcher: [rofi](https://github.com/adi1090x/rofi)
+- Launcher: [wofi](https://hg.sr.ht/~scoopta/wofi)
 - Desktop: [hyprland](https://hyprland.org/)
 - Login Manager: [ly](https://github.com/fairyglade/ly)
 
