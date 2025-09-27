@@ -1,10 +1,11 @@
-```nix
 {
   description = "Aaron's Dotfiles V4 - being my system configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
@@ -12,7 +13,7 @@
     eko.url = "github:Kyren223/eko";
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, eko, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, zen-browser, eko, disko, ... }@inputs:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -22,6 +23,7 @@
         framework = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            disko.nixosModules.disko
             (mkMachine {
               basics = {
                 hostname = "framework";
@@ -42,4 +44,3 @@
       };
     };
 }
-```

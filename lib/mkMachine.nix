@@ -9,12 +9,12 @@
   networking.hostName = basics.hostname;
   time.timeZone = basics.timezone or "UTC";
 
-  users.users.root = {
-    password = basics.rootPassword or "root";
-  };
-
   users.users = lib.mkMerge [
-    config.users.users
+    {
+      root = {
+        password = basics.rootPassword or "root";
+      };
+    }
     (lib.listToAttrs (map (u: {
       name = u;
       value = { isNormalUser = true; extraGroups = [ "wheel" ]; };
