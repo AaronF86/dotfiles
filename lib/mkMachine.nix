@@ -1,28 +1,33 @@
-{ lib, ... }:
+{ lib, nixpkgs, home-manager, mkUsers, disko, ... }:
 
-{ basics, diskoConfig }:
-{ config, pkgs, ... }: {
-  imports = [
-    diskoConfig
-  ];
+{ meta, modules ? [], extraModules ? [] }:
 
-  networking.hostName = basics.hostname;
-  time.timeZone = basics.timezone or "UTC";
+let
+  users = mkUsers {
+    userMap = meta.users;
+  };
+in
 
-  users.users = lib.mkMerge [
+nixpkgs.lib.nixosSystem {
+  system = meta.system or "x86_64-linux";
+  specialArgs = { inherit meta; };
+
+  modules = [
+    disko.nixosModules.disko
     {
-      root = {
-        password = basics.rootPassword or "root";
-      };
+      networking.hostName = meta.hostname;
     }
-    (lib.listToAttrs (map (u: {
-      name = u;
-      value = { isNormalUser = true; extraGroups = [ "wheel" ]; };
-    }) (basics.users or [ ])))
+    {
+      users.users = users.systemUsers;
+    }
+  ]
+  ++ modules
+  ++ extraModules
+  ++ lib.optionals (builtins.length (lib.attrNames users.homeManagerUsers) > 0) [
+    home-manager.nixosModules.home-manager
+    {
+      home-manager.useGlobalPkgs = true;
+      home-manager.users = users.homeManagerUsers;
+    }
   ];
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  services.openssh.enable = basics.enableSSH or true;
 }

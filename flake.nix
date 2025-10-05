@@ -13,34 +13,17 @@
     eko.url = "github:Kyren223/eko";
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, eko, disko, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      lib = nixpkgs.lib;
-      mkMachine = import ./lib/mkMachine.nix { inherit lib; };
-    in {
-      nixosConfigurations = {
-        framework = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            disko.nixosModules.disko
-            (mkMachine {
-              basics = {
-                hostname = "framework";
-                timezone = "Europe/London";
-                users = [ "aaron" ];
-                rootPassword = "root";
-                enableSSH = true;
-              };
-              diskoConfig = ./disko/framework.nix;
-            })
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.users.aaron = import ./home/aaron.nix;
-            }
-          ];
-        };
-      };
-    };
+  outputs = inputs @ { self, nixpkgs, home-manager, disko, ... }:
+  let
+    lib = nixpkgs.lib;
+    mkUsers = import ./lib/mkUsers.nix { inherit lib home-manager; userPath = ./user; homePath = ./home; };
+    mkMachine = import ./lib/mkMachine.nix { inherit lib nixpkgs home-manager mkUsers disko; };
+
+    discoverHosts = import ./lib/discoverHosts.nix { inherit lib; };
+    hosts = discoverHosts { path = ./Hosts; };
+  in
+  {
+    nixosConfigurations = lib.mapAttrs (_: host: mkMachine host) hosts;
+  };
 }
+
