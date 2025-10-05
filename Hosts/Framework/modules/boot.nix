@@ -1,9 +1,11 @@
 {config, pkgs, ...}:
 
 {
-      boot.loader.grub = {
+    boot.loader.grub = {
     enable = true;
     version = 2;
-    device = "/dev/nvme0n1";
-  };
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+    device = "nodev";
+    };
 }
