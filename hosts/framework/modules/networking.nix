@@ -2,7 +2,6 @@
 
 {
   networking = {
-    hostName = "framework-13";
     networkmanager = {
       enable = true;
 
@@ -20,6 +19,4 @@
 
     useDHCP = false;
   };
-
-  services.iwd.enable = true;
 }

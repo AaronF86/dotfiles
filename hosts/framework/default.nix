@@ -13,5 +13,7 @@
     ./disko.nix               # <-|
     ./modules/boot.nix        # <-| Maybe make these 3 into mandatory modules and place them in the mkMachine call?
     ./modules/networking.nix  # <-| 
+    ../../modules/common.nix
+    ../../modules/loginManagers/ly.nix
   ];
 }

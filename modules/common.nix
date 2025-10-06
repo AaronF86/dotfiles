@@ -1,0 +1,23 @@
+# Common module configurations for all NixOS hosts.
+
+{ config, lib, pkgs, ... }:
+
+{
+    # Standard system packages
+    environment.systemPackages = with pkgs; [
+        neovim
+        git
+        curl
+        tree
+        wget
+        vim
+        zip
+        unzip
+    ];
+
+    # Locale settings
+    i18n = {
+        defaultLocale = "en_GB.UTF-8";
+        supportedLocales = [ "all" ];
+    };
+}
