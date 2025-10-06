@@ -4,7 +4,7 @@
     imports = [ 
         ./binds.nix
         ./hyprpaper.nix
-        ./warbar.nix
+        ./waybar.nix
         ./dunst.nix
         ./wofi.nix
     ];

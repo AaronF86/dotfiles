@@ -13,5 +13,6 @@
   imports = [
     ../../homeModules/zen.nix
     ../../homeModules/ghostty.nix
+    ../../homeModules/hyprland
   ];
 }
