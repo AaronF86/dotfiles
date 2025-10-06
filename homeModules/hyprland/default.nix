@@ -54,10 +54,6 @@
       };
       
       
-      gestures = {
-        workspace_swipe = false;
-      };
-      
       misc = {
         force_default_wallpaper = -1;
       };
