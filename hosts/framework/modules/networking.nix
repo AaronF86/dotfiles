@@ -4,8 +4,6 @@
   age.secrets.wifi.file = ../../../secrets/wifi.age;
 
   networking = {
-    useDHCP = false;
-
     networkmanager = {
       enable = true;
       wifi.backend = "iwd";
@@ -23,7 +21,6 @@
 
       settings = {
         connection.autoconnect = true;
-        wifi.powersave = 2;
       };
     };
   };
