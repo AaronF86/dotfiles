@@ -16,5 +16,6 @@
     ../../modules/common.nix
     ../../modules/DesktopEnvironments/hyprland.nix
     ../../modules/loginManagers/ly.nix
+    ./modules/hardware.nix
   ];
 }

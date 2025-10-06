@@ -20,4 +20,11 @@
         defaultLocale = "en_GB.UTF-8";
         supportedLocales = [ "all" ];
     };
+
+    # Timezone settings
+    time.timeZone = "Europe/London";
+
+    nixpkgs.config = {
+        allowUnfree = true;
+    };
 }

@@ -15,7 +15,6 @@
     cpu.amd.updateMicrocode = true;
     bluetooth.enable = true;
     graphics.enable = true;
-    bolt.enable = true;
   };
 
   networking.networkmanager.enable = true;
@@ -36,8 +35,6 @@
     };
 
     fprintd.enable = true;
-    iio-sensor-proxy.enable = true;
-    logind.extraConfig = "HandleLidSwitch=suspend";
     fstrim = {
       enable = true;
       interval = "weekly";
@@ -49,5 +46,5 @@
     dates = "weekly";
     options = "--delete-older-than 7d";
     };
-    systemd.services.nix-gc.enable = false
+    systemd.services.nix-gc.enable = false;
 }
