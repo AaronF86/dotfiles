@@ -20,7 +20,7 @@
     mkMachine = import ./lib/mkMachine.nix { inherit lib nixpkgs home-manager mkUsers disko; };
 
     discoverHosts = import ./lib/discoverHosts.nix { inherit lib; };
-    hosts = discoverHosts { path = ./Hosts; };
+    hosts = discoverHosts { path = ./hosts; };
   in
   {
     nixosConfigurations = lib.mapAttrs (_: host: mkMachine host) hosts;
