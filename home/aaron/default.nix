@@ -9,4 +9,9 @@
   home.packages = [
     pkgs.fastfetch
   ];
+
+  imports = [
+    ../../homeModules/zen.nix
+    ../../homeModules/ghostty.nix
+  ];
 }

@@ -13,11 +13,11 @@
     eko.url = "github:Kyren223/eko";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, disko, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, disko, zen-browser, ... }:
   let
     lib = nixpkgs.lib;
     mkUsers = import ./lib/mkUsers.nix { inherit lib home-manager; userPath = ./user; homePath = ./home; };
-    mkMachine = import ./lib/mkMachine.nix { inherit lib nixpkgs home-manager mkUsers disko; };
+    mkMachine = import ./lib/mkMachine.nix { inherit lib nixpkgs home-manager mkUsers disko zen-browser; };
 
     discoverHosts = import ./lib/discoverHosts.nix { inherit lib; };
     hosts = discoverHosts { path = ./hosts; };

@@ -1,4 +1,4 @@
-{ lib, nixpkgs, home-manager, mkUsers, disko, ... }:
+{ lib, nixpkgs, home-manager, mkUsers, disko, zen-browser, ... }:
 
 { meta, modules ? [], extraModules ? [] }:
 
@@ -31,6 +31,7 @@ nixpkgs.lib.nixosSystem {
     {
       home-manager.useGlobalPkgs = true;
       home-manager.users = users.homeManagerUsers;
+      home-manager.extraSpecialArgs = { inherit zen-browser; };
     }
   ];
 }
