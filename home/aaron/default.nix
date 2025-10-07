@@ -11,10 +11,10 @@
     mattermost-desktop
     obs-studio
     vscode
-    jetbrains.idea-ultimate
     gradle
     jdk
     vesktop
+  ];
 
   imports = [
     ../../homeModules/zen.nix
