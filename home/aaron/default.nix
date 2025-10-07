@@ -6,9 +6,15 @@
 
   programs.git.enable = true;
 
-  home.packages = [
-    pkgs.fastfetch
-  ];
+  home.packages = with pkgs; [
+    xfce.thunar
+    mattermost-desktop
+    obs-studio
+    vscode
+    jetbrains.idea-ultimate
+    gradle
+    jdk
+    vesktop
 
   imports = [
     ../../homeModules/zen.nix
