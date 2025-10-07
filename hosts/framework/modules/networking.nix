@@ -1,28 +1,42 @@
 { config, pkgs, ... }:
 
 {
-  age.secrets.wifi.file = ../../../secrets/wifi.age;
+  sops.defaultSopsFile = ../../../secrets/networks.yaml;
+  sops.secrets."home/id" = {};
+  sops.secrets."home/password" = {};
 
   networking = {
     networkmanager = {
       enable = true;
       wifi.backend = "iwd";
-
-      ensureProfiles.profiles = {
-        home = {
-          connection.id = "home";
-          connection.type = "wifi";
-          wifi.ssid = "@${config.age.secrets.wifi.path}.HOME_SSID@";
-          wifi.mode = "infrastructure";
-          wifi-security.key-mgmt = "wpa-psk";
-          wifi-security.psk = "@${config.age.secrets.wifi.path}.HOME_PASSWORD@";
-        };
-      };
-
-      settings = {
-        connection.autoconnect = true;
-      };
     };
+  };
+
+  # Create NetworkManager connection file using SOPS template
+  sops.templates."home-wifi" = {
+    content = ''
+      [connection]
+      id=Home
+      type=wifi
+      autoconnect=true
+
+      [wifi]
+      mode=infrastructure
+      ssid=${config.sops.placeholder."home/id"}
+
+      [wifi-security]
+      key-mgmt=wpa-psk
+      psk=${config.sops.placeholder."home/password"}
+
+      [ipv4]
+      method=auto
+
+      [ipv6]
+      addr-gen-mode=stable-privacy
+      method=auto
+    '';
+    path = "/etc/NetworkManager/system-connections/Home.nmconnection";
+    mode = "0600";
   };
 
   services.avahi = {

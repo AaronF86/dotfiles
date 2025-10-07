@@ -1,4 +1,4 @@
-{ lib, nixpkgs, home-manager, mkUsers, disko, zen-browser, agenix, ... }:
+{ lib, nixpkgs, home-manager, mkUsers, disko, zen-browser, sops-nix, ... }:
 
 { meta, modules ? [], extraModules ? [] }:
 
@@ -14,7 +14,7 @@ nixpkgs.lib.nixosSystem {
 
   modules = [
     disko.nixosModules.disko
-    agenix.nixosModules.default
+    sops-nix.nixosModules.sops
     {
       system.stateVersion = "25.11"; # move this at some point to attribute of host meta
     }

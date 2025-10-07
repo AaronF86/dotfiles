@@ -11,14 +11,14 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
     eko.url = "github:Kyren223/eko";
-    agenix.url = "github:ryantm/agenix";
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, disko, zen-browser, agenix, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, disko, zen-browser, sops-nix, ... }:
   let
     lib = nixpkgs.lib;
     mkUsers = import ./lib/mkUsers.nix { inherit lib home-manager; userPath = ./user; homePath = ./home; };
-    mkMachine = import ./lib/mkMachine.nix { inherit lib nixpkgs home-manager mkUsers disko zen-browser agenix; };
+    mkMachine = import ./lib/mkMachine.nix { inherit lib nixpkgs home-manager mkUsers disko zen-browser sops-nix; };
 
     discoverHosts = import ./lib/discoverHosts.nix { inherit lib; };
     hosts = discoverHosts { path = ./hosts; };
