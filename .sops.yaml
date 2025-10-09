@@ -1,0 +1,9 @@
+keys:
+  - &framework age1tp2fvhzmppzhws5vh4tyweqde5a0s5ltgj9xzd3vfgym5paxw40sqlcgc2
+  - &desktop age18kze56qqa8cc73vrc9nkpry0uely5sum03vg2sym4jehumaadvmq723pya
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *framework
+      - *desktop

@@ -1,97 +1,30 @@
 {
-  description = "being a simple nixos flake";
+  description = "Aaron's Dotfiles V4 - being my system configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # Eko app (client/server) flake
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
     eko.url = "github:Kyren223/eko";
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = { nixpkgs, home-manager, flake-utils, zen-browser, ... }@inputs:
+  outputs = inputs @ { self, nixpkgs, home-manager, disko, zen-browser, sops-nix, ... }:
   let
-    systems = flake-utils.lib.defaultSystems;
+    lib = nixpkgs.lib;
+    mkUsers = import ./lib/mkUsers.nix { inherit lib home-manager; userPath = ./user; homePath = ./home; };
+    mkMachine = import ./lib/mkMachine.nix { inherit lib nixpkgs home-manager mkUsers disko zen-browser sops-nix; };
+
+    discoverHosts = import ./lib/discoverHosts.nix { inherit lib; };
+    hosts = discoverHosts { path = ./hosts; };
   in
   {
-    nixosConfigurations = builtins.listToAttrs (builtins.concatLists (
-      map (system: [
-        {
-          name = "laptop-${system}";
-          value = nixpkgs.lib.nixosSystem {
-            inherit system;
-            
-            modules = [
-              ./hosts/laptop.nix
-              ./modules/common.nix
-              ./users/users.nix
-              home-manager.nixosModules.home-manager
-              {
-                nixpkgs.config.allowUnfree = true;
-                home-manager.useUserPackages = true;
-                home-manager.useGlobalPkgs = true;
-                home-manager.users.aaron = import ./users/aaron.nix;
-                home-manager.extraSpecialArgs = { inherit inputs; };
-              }
-            ];
-          };
-        }
-        {
-          name = "desktop-${system}";
-          value = nixpkgs.lib.nixosSystem {
-            inherit system;
-            specialArgs = { inherit inputs; };
-            modules = [
-              ./hosts/desktop.nix
-              ./modules/common.nix
-              ./users/users.nix
-              home-manager.nixosModules.home-manager
-              {
-                nixpkgs.config.allowUnfree = true;
-                home-manager.useUserPackages = true;
-                home-manager.useGlobalPkgs = true;
-                home-manager.users.aaron = import ./users/aaron.nix;
-                home-manager.extraSpecialArgs = { inherit inputs; };
-              }
-            ];
-          };
-        }
-        {
-          name = "vps-${system}";
-          value = nixpkgs.lib.nixosSystem {
-            inherit system;
-            modules = [
-              ./hosts/vps.nix
-              ./modules/common.nix
-              ./users/users.nix
-              home-manager.nixosModules.home-manager
-              {
-                nixpkgs.config.allowUnfree = true;
-                home-manager.useUserPackages = true;
-                home-manager.useGlobalPkgs = true;
-                home-manager.users.aaron = import ./users/aaron.nix;
-                home-manager.extraSpecialArgs = { inherit inputs; };
-              }
-            ];
-          };
-        }
-      ]) systems)
-    );
-
-    homeConfigurations = builtins.listToAttrs (map (system: {
-      name = "aaron-${system}";
-      value = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
-        modules = [ ./users/aaron.nix ];
-        extraSpecialArgs = { inherit inputs; };
-      };
-    }) systems);
+    nixosConfigurations = lib.mapAttrs (_: host: mkMachine host) hosts;
   };
-
-  
 }
+
