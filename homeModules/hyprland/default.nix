@@ -64,4 +64,8 @@
       ];
     };
   };
+
+    home.packages = with pkgs; [
+    way-displays
+  ];
 }
