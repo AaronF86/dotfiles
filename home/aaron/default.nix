@@ -21,5 +21,6 @@
     ../../homeModules/ghostty.nix
     ../../homeModules/hyprland
     ../../homeModules/neovim
+    ../../homeModules/fish.nix
   ];
 }

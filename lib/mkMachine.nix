@@ -21,9 +21,9 @@ nixpkgs.lib.nixosSystem {
     {
       networking.hostName = meta.hostname;
     }
-    {
-      users.users = users.systemUsers;
-    }
+    ({ pkgs, ... }: {
+      users.users = lib.mapAttrs (_: userModule: userModule { inherit pkgs; }) users.systemUsers;
+    })
   ]
   ++ modules
   ++ extraModules
