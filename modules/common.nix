@@ -10,7 +10,6 @@
         curl
         tree
         wget
-        vim
         zip
         unzip
     ];
