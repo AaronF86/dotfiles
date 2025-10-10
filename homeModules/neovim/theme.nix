@@ -1,12 +1,12 @@
 { pkgs, config, ... }:
 {
   programs.neovim.extraConfig = ''
-    lua << EOF
+lua << EOF
       vim.cmd [[colorscheme doom-one]]
 
       require('lualine').setup {
         options = {
-#          theme = 'doom-one', I NEED TO FIX THIS LATER   
+--          theme = 'doom-one', I NEED TO FIX THIS LATER   
           icons_enabled = true,
         }
       }
@@ -17,6 +17,6 @@
         org_agenda_files = {'~/org/*'},
         org_default_notes_file = '~/org/refile.org',
       })
-    EOF
+EOF
   '';
 }

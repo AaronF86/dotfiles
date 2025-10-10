@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 {
   programs.neovim.extraConfig = ''
-    lua << EOF
+lua << EOF
       require'nvim-treesitter.configs'.setup {
         highlight = {
           enable = true,
@@ -16,6 +16,6 @@
           },
         },
       }
-    EOF
+EOF
   '';
 }
