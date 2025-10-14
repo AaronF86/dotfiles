@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-master, ... }:
 {
   home.username = "aaron";
   home.homeDirectory = "/home/aaron";
@@ -14,6 +14,7 @@
     gradle
     jdk
     vesktop
+    pkgs-master.foxglove-studio
   ];
 
   imports = [
