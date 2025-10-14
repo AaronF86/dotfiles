@@ -1,4 +1,4 @@
-{pkgs, lib, config, ...}:
+{pkgs, lib, config, meta, ...}:
 
 {
     imports = [ 
@@ -7,6 +7,8 @@
         ./waybar.nix
         ./dunst.nix
         ./wofi.nix
+    ] ++ lib.optionals (builtins.pathExists (./monitors + "/${meta.hostname}.nix")) [
+        (./monitors + "/${meta.hostname}.nix")
     ];
 
     wayland.windowManager.hyprland = {
@@ -67,5 +69,6 @@
 
     home.packages = with pkgs; [
     way-displays
+    grimblast
   ];
 }

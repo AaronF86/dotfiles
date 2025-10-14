@@ -18,7 +18,7 @@
       
       # Set wallpapers for each monitor
       wallpaper = [
-        "DP-2,~/Pictures/wallpapers/wallpaper1.jpg"
+        "eDP-1,~/Pictures/wallpapers/wallpaper1.jpg"
         "HDMI-A-2,~/Pictures/wallpapers/wallpaper2.jpg"
         "HDMI-A-1,~/Pictures/wallpapers/wallpaper3.jpg"
       ];

@@ -1,4 +1,4 @@
-{ lib, nixpkgs, home-manager, mkUsers, disko, zen-browser, sops-nix, ... }:
+{ lib, nixpkgs, nixpkgs-master, home-manager, mkUsers, disko, zen-browser, sops-nix, ... }:
 
 { meta, modules ? [], extraModules ? [] }:
 
@@ -10,7 +10,7 @@ in
 
 nixpkgs.lib.nixosSystem {
   system = meta.system or "x86_64-linux";
-  specialArgs = { inherit meta; };
+  specialArgs = { inherit meta; pkgs-master = import nixpkgs-master { system = meta.system or "x86_64-linux"; config.allowUnfree = true; }; };
 
   modules = [
     disko.nixosModules.disko
@@ -21,9 +21,9 @@ nixpkgs.lib.nixosSystem {
     {
       networking.hostName = meta.hostname;
     }
-    {
-      users.users = users.systemUsers;
-    }
+    ({ pkgs, ... }: {
+      users.users = lib.mapAttrs (_: userModule: userModule { inherit pkgs; }) users.systemUsers;
+    })
   ]
   ++ modules
   ++ extraModules
@@ -32,7 +32,7 @@ nixpkgs.lib.nixosSystem {
     {
       home-manager.useGlobalPkgs = true;
       home-manager.users = users.homeManagerUsers;
-      home-manager.extraSpecialArgs = { inherit zen-browser; };
+      home-manager.extraSpecialArgs = { inherit meta zen-browser; pkgs-master = import nixpkgs-master { system = meta.system or "x86_64-linux"; config.allowUnfree = true; }; };
     }
   ];
 }

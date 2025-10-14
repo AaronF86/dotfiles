@@ -1,10 +1,23 @@
 {config, pkgs, ...}:
 
 {
-    boot.loader.grub = {
-    enable = true;
-    efiSupport = true;
-    efiInstallAsRemovable = true;
-    device = "nodev";
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
     };
+    grub = {
+      enable = true;
+      efiSupport = true;
+      device = "nodev";
+      useOSProber = true;
+    };
+  };
+
+  boot.supportedFilesystems = [ "btrfs" ];
+  
+  
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 10;
+  };
 }

@@ -4,4 +4,5 @@
   description = "Aaron's system account";
   extraGroups = [ "wheel" "network" "docker" ];
   hashedPassword = "";
+  shell = pkgs.fish;
 }

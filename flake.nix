@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     flake-utils.url = "github:numtide/flake-utils";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
@@ -14,11 +15,11 @@
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, disko, zen-browser, sops-nix, ... }:
+  outputs = inputs @ { self, nixpkgs, nixpkgs-master, home-manager, disko, zen-browser, sops-nix, ... }:
   let
     lib = nixpkgs.lib;
     mkUsers = import ./lib/mkUsers.nix { inherit lib home-manager; userPath = ./user; homePath = ./home; };
-    mkMachine = import ./lib/mkMachine.nix { inherit lib nixpkgs home-manager mkUsers disko zen-browser sops-nix; };
+    mkMachine = import ./lib/mkMachine.nix { inherit lib nixpkgs nixpkgs-master home-manager mkUsers disko zen-browser sops-nix; };
 
     discoverHosts = import ./lib/discoverHosts.nix { inherit lib; };
     hosts = discoverHosts { path = ./hosts; };
