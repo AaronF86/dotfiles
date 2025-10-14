@@ -31,4 +31,7 @@
 
     virtualisation.docker.enable = true; 
     
+    nix.settings = {
+        experimental-features = [ "flakes" "nix-command" ];
+    };
 }
