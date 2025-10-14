@@ -1,6 +1,7 @@
 {pkgs, config, ...}: {
     programs.neovim.plugins = with pkgs.vimPlugins; [
         telescope-nvim
+        telescope-fzf-native-nvim
         nvim-lspconfig
         nvim-treesitter.withAllGrammars
         orgmode
