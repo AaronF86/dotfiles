@@ -1,21 +1,21 @@
-{pkgs, lib, config, meta, ...}:
+{ pkgs, lib, config, meta, ... }:
 
 {
-    imports = [ 
-        ./binds.nix
-        ./hyprpaper.nix
-        ./waybar.nix
-        ./dunst.nix
-        ./wofi.nix
-    ] ++ lib.optionals (builtins.pathExists (./monitors + "/${meta.hostname}.nix")) [
-        (./monitors + "/${meta.hostname}.nix")
-    ];
+  imports = [
+    ./binds.nix
+    ./hyprpaper.nix
+    ./waybar.nix
+    ./dunst.nix
+    ./wofi.nix
+  ] ++ lib.optionals (builtins.pathExists (./monitors + "/${meta.hostname}.nix")) [
+    (./monitors + "/${meta.hostname}.nix")
+  ];
 
-    wayland.windowManager.hyprland = {
+  wayland.windowManager.hyprland = {
     enable = true;
-    
+
     settings = {
-    input = {
+      input = {
         kb_layout = "us";
         follow_mouse = 1;
         touchpad = {
@@ -23,7 +23,7 @@
         };
         sensitivity = 0;
       };
-      
+
       general = {
         gaps_in = 5;
         gaps_out = 20;
@@ -33,33 +33,33 @@
         layout = "dwindle";
         allow_tearing = false;
       };
-      
+
       decoration = {
         rounding = 10;
-        
+
         blur = {
           enabled = true;
           size = 3;
           passes = 1;
         };
-        
+
 
       };
-      
+
       animations = {
         enabled = false;
       };
-      
+
       dwindle = {
         pseudotile = true;
         preserve_split = true;
       };
-      
-      
+
+
       misc = {
         force_default_wallpaper = -1;
       };
-       exec-once = [
+      exec-once = [
         "waybar"
         "dunst"
         "hyprpaper"
@@ -67,7 +67,7 @@
     };
   };
 
-    home.packages = with pkgs; [
+  home.packages = with pkgs; [
     way-displays
     grimblast
   ];

@@ -16,16 +16,16 @@
   };
 
   outputs = inputs @ { self, nixpkgs, nixpkgs-master, home-manager, disko, zen-browser, sops-nix, ... }:
-  let
-    lib = nixpkgs.lib;
-    mkUsers = import ./lib/mkUsers.nix { inherit lib home-manager; userPath = ./user; homePath = ./home; };
-    mkMachine = import ./lib/mkMachine.nix { inherit lib nixpkgs nixpkgs-master home-manager mkUsers disko zen-browser sops-nix; };
+    let
+      lib = nixpkgs.lib;
+      mkUsers = import ./lib/mkUsers.nix { inherit lib home-manager; userPath = ./user; homePath = ./home; };
+      mkMachine = import ./lib/mkMachine.nix { inherit lib nixpkgs nixpkgs-master home-manager mkUsers disko zen-browser sops-nix; };
 
-    discoverHosts = import ./lib/discoverHosts.nix { inherit lib; };
-    hosts = discoverHosts { path = ./hosts; };
-  in
-  {
-    nixosConfigurations = lib.mapAttrs (_: host: mkMachine host) hosts;
-  };
+      discoverHosts = import ./lib/discoverHosts.nix { inherit lib; };
+      hosts = discoverHosts { path = ./hosts; };
+    in
+    {
+      nixosConfigurations = lib.mapAttrs (_: host: mkMachine host) hosts;
+    };
 }
 

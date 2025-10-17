@@ -1,4 +1,4 @@
-{config, pkgs, ...}:
+{ config, pkgs, ... }:
 
 {
   boot.loader = {
@@ -10,13 +10,13 @@
       enable = true;
       efiSupport = true;
       device = "nodev";
-      useOSProber = true;
+      # useOSProber = true; disabled for faster rebuilds
     };
   };
 
   boot.supportedFilesystems = [ "btrfs" ];
-  
-  
+
+
   boot.kernel.sysctl = {
     "vm.swappiness" = 10;
   };

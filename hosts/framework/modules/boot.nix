@@ -1,4 +1,4 @@
-{config, pkgs, ...}:
+{ config, pkgs, ... }:
 
 {
   boot.loader = {
@@ -15,8 +15,8 @@
   };
 
   boot.supportedFilesystems = [ "btrfs" ];
-  
-  
+
+
   boot.kernel.sysctl = {
     "vm.swappiness" = 10;
   };

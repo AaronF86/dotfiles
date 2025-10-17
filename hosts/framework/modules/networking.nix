@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 
 {
-#  sops.defaultSopsFile = ../../../secrets/networks.yaml;
-#  sops.secrets."home/id" = {};
-#  sops.secrets."home/password" = {};
+  #  sops.defaultSopsFile = ../../../secrets/networks.yaml;
+  #  sops.secrets."home/id" = {};
+  #  sops.secrets."home/password" = {};
 
   networking = {
     networkmanager = {

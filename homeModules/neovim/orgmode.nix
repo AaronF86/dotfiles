@@ -31,6 +31,11 @@
             template = '* %?\n  %U',
             target = '~/notes/personal/ideas.org'
           },
+          t = {
+            description = 'Task',
+            template = '* TODO %?\n  SCHEDULED: %t\n  :PROPERTIES:\n  :CREATED: %U\n  :END:',
+            target = '~/notes/refile.org'
+          },
         },
         mappings = {
           org = {
@@ -38,6 +43,12 @@
           },
         },
       })
+      
+      -- Orgmode keymaps (must be outside setup)
+      vim.keymap.set('n', '<leader>oa', '<cmd>OrgAgenda<CR>')
+      vim.keymap.set('n', '<leader>oc', '<cmd>OrgCapture<CR>')
+      vim.keymap.set('n', '<leader>ot', '<cmd>OrgTodo<CR>')
+      vim.keymap.set('n', '<leader>on', '<cmd>OrgNext<CR>')
     EOF
   '';
 }

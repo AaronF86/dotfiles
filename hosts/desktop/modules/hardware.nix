@@ -28,10 +28,10 @@
     };
   };
 
-    # nix.gc = {
-    # automatic = true;
-    # dates = "weekly";
-    # options = "--delete-older-than 7d";
-    # };
-    # systemd.services.nix-gc.enable = false;
+  # nix.gc = {
+  # automatic = true;
+  # dates = "weekly";
+  # options = "--delete-older-than 7d";
+  # };
+  # systemd.services.nix-gc.enable = false;
 }

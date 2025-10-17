@@ -41,10 +41,10 @@
     };
   };
 
-    nix.gc = {
+  nix.gc = {
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 7d";
-    };
-    systemd.services.nix-gc.enable = false;
+  };
+  systemd.services.nix-gc.enable = false;
 }

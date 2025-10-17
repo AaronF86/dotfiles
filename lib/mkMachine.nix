@@ -1,6 +1,6 @@
 { lib, nixpkgs, nixpkgs-master, home-manager, mkUsers, disko, zen-browser, sops-nix, ... }:
 
-{ meta, modules ? [], extraModules ? [] }:
+{ meta, modules ? [ ], extraModules ? [ ] }:
 
 let
   users = mkUsers {

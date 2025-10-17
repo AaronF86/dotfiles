@@ -4,8 +4,6 @@
   home.homeDirectory = "/home/aaron";
   home.stateVersion = "25.05";
 
-  programs.git.enable = true;
-
   home.packages = with pkgs; [
     xfce.thunar
     mattermost-desktop
@@ -15,6 +13,15 @@
     jdk
     vesktop
     pkgs-master.foxglove-studio
+    jetbrains.idea-ultimate
+
+
+    # Development Tools
+    clang-tools
+    nil # Nix LSP
+    nixpkgs-fmt # Nix formatter
+    rust-analyzer # Rust LSP
+    clippy # Rust linter
   ];
 
   imports = [
@@ -23,5 +30,7 @@
     ../../homeModules/hyprland
     ../../homeModules/neovim
     ../../homeModules/fish.nix
+    ../../homeModules/git.nix
+    ../../homeModules/ssh.nix
   ];
 }

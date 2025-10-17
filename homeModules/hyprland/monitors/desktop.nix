@@ -2,7 +2,7 @@
 {
   wayland.windowManager.hyprland.settings = {
     monitor = [
-      "DP-2,preferred,0x0,1"        # left  (Dell)
+      "DP-2,preferred,0x0,1" # left  (Dell)
       "HDMI-A-1,preferred,1920x0,1" # center (AOC 2481)
       "HDMI-A-2,preferred,3840x0,1" # right  (AOC 2381)
     ];

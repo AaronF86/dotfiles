@@ -3,7 +3,7 @@
 {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
-    
+
     bind = [
       "$mod, RETURN, exec, ghostty"
       "$mod, D, exec, wofi -f --show=drun --lines=5 --prompt=\"\""
@@ -39,18 +39,18 @@
       "$mod SHIFT, TAB, changegroupactive, b"
       "$mod CTRL, L, moveoutofgroup, r"
       "$mod CTRL, H, moveoutofgroup, l"
-      
+
       # Workspace binds
       "$mod, 1, workspace,  1"
       "$mod, 2, workspace,  2"
       "$mod, 3, workspace,  3"
       "$mod, 4, workspace,  4"
-      
+
       "$mod SHIFT, 1, movetoworkspace, 1"
       "$mod SHIFT, 2, movetoworkspace, 2"
       "$mod SHIFT, 3, movetoworkspace, 3"
       "$mod SHIFT, 4, movetoworkspace, 4"
-      
+
       # Wallpaper controls
       "$mod, W, exec, hyprctl hyprpaper wallpaper \"DP-2,$(find ~/Pictures/wallpapers -type f | shuf -n 1)\""
       "$mod SHIFT, W, exec, hyprctl hyprpaper wallpaper \"HDMI-A-2,$(find ~/Pictures/wallpapers -type f | shuf -n 1)\""
