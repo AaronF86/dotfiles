@@ -1,91 +1,167 @@
 { config, pkgs, ... }:
+
 {
-  programs.waybar.enable = true;
+  # Enable Waybar
+  programs.waybar = {
+    enable = true;
 
-  programs.waybar.settings = {
-    mainBar = {
-      layer = "top";
-      position = "top";
-      height = 40;
-      output = [ "*" ];
+    settings = {
+      mainBar = {
+        layer = "top";
+        position = "top";
+        height = 36;
+        output = [ "*" ];
+        modules-left = [ "custom/logo" "hyprland/workspaces" ];
+        modules-right = [ "network" "custom/vpn" "custom/language" "clock" "battery" ];
 
-      modules-left = [ "custom/logo" "hyprland/workspaces" ];
-      modules-right = [ "custom/language" "clock" "battery" ];
+        "custom/logo" = {
+          format = "";
+          tooltip = false;
+          on-click = "bemenu-run --accept-single -n -p 'Launch'";
+        };
 
-      "custom/logo" = {
-        format = "";
-        tooltip = false;
-        on-click = ''bemenu-run --accept-single -n -p "Launch" --hp 4 --hf "#ffffff" --sf "#ffffff" --tf "#ffffff"'';
-      };
+        "hyprland/workspaces" = {
+          format = "{icon}";
+          on-click = "activate";
+          all-outputs = false;
+          format-icons = {
+            "1" = "1";
+            "2" = "2";
+            "3" = "3";
+            "4" = "4";
+            "5" = "5";
+            "6" = "6";
+            "7" = "7";
+            "default" = "";
+          };
+        };
 
-      "hyprland/workspaces" = {
-        on-click = "activate"; # optional
-        format = "{icon}";
-        all-outputs = false;
-      };
+        "network" = {
+          format-wifi = "  {essid} ({signalStrength}%)";
+          format-ethernet = "  {ifname}";
+          format-disconnected = "  Disconnected";
+          tooltip-format = "{ifname}: {ipaddr}/{cidr}";
+          tooltip-format-wifi = "{essid} ({signalStrength}%)\n  {ipaddr}/{cidr}\n  {frequency} MHz";
+          on-click = "nm-connection-editor";
+          interval = 5;
+        };
 
-      "custom/language" = {
-        format = "{}";
-        tooltip = false;
-        exec = "setxkbmap -query | grep layout | awk '{print $2}'";
-        interval = 5;
-        on-click = "hyprctl switchxkblayout at-translated-set-2-keyboard next"; # Adjust device name as needed
-      };
+        "custom/vpn" = {
+          format = "{}";
+          exec = "~/.config/waybar/scripts/vpn-status.sh";
+          return-type = "json";
+          interval = 5;
+          on-click = "~/.config/waybar/scripts/vpn-toggle.sh";
+          tooltip = true;
+        };
 
-      "clock" = {
-        interval = 60;
-        format = "{:%a %d/%m %I:%M}";
-      };
+        "clock" = {
+          format = "{:%a %d %b  %H:%M}";
+          interval = 60;
+          tooltip = false;
+        };
 
-      "battery" = {
-        tooltip = false;
+        "battery" = {
+          format = "{icon} {capacity}%";
+          format-icons = [ "" "" "" "" "" ];
+          interval = 30;
+          tooltip = false;
+        };
       };
     };
+
+    style = ''
+      * {
+        all: unset;
+        font-family: "JetBrainsMono Nerd Font Mono", "NotoSans Nerd Font Mono", monospace;
+        font-size: 12px;
+        color: #bbc2cf;
+      }
+
+      window#waybar {
+        background: #282c34;
+        border-bottom: 2px solid #51afef;
+        padding: 0 8px;
+      }
+
+      #custom-logo {
+        font-size: 24px;
+        margin: 0 12px 0 8px;
+        color: #51afef;
+      }
+
+      #workspaces {
+        margin-left: 5px;
+      }
+
+      #workspaces button {
+        padding: 4px 8px;
+        margin: 0 4px;
+        border-radius: 6px;
+        min-width: 24px;
+        color: #bbc2cf;
+        background: transparent;
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+
+      #workspaces button.active {
+        background: #51afef;
+        color: #282c34;
+      }
+
+      #workspaces button:hover {
+        background: #3e4451;
+        color: #51afef;
+      }
+
+      #custom-language, #clock, #battery {
+        padding: 0 8px;
+        color: #bbc2cf;
+      }
+
+      #network {
+        padding: 0 8px;
+        color: #98be65;
+      }
+
+      #network.disconnected {
+        color: #ff6c6b;
+      }
+
+      #custom-vpn {
+        padding: 0 8px;
+        color: #51afef;
+      }
+
+      #battery {
+        margin-right: 6px;
+      }
+
+      #battery.charging {
+        color: #98be65;
+      }
+
+      #battery.warning:not(.charging) {
+        color: #ecbe7b;
+      }
+
+      #battery.critical:not(.charging) {
+        color: #ff6c6b;
+      }
+
+      #clock {
+        color: #c678dd;
+      }
+    '';
   };
 
-  programs.waybar.style = ''
-    * {
-      border: none;
-      border-radius: 0;
-      padding: 0;
-      margin: 0;
-      font-size: 11px;
-    }
+  fonts.fontconfig.enable = true;
 
-    window#waybar {
-      background: #292828;
-      color: #ffffff;
-    }
-
-    #custom-logo {
-      font-size: 18px;
-      margin: 0;
-      margin-left: 7px;
-      margin-right: 12px;
-      padding: 0;
-      font-family: NotoSans Nerd Font Mono;
-    }
-
-    #workspaces button {
-      margin-right: 10px;
-      color: #ffffff;
-    }
-    #workspaces button:hover, #workspaces button:active {
-      background-color: #292828;
-      color: #ffffff;
-    }
-    #workspaces button.focused {
-      background-color: #941919;
-      color: #ffffff;
-    }
-
-    #custom-language {
-      margin-right: 7px;
-    }
-
-    #battery {
-      margin-left: 7px;
-      margin-right: 3px;
-    }
-  '';
+  home.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+    waybar
+        networkmanagerapplet
+    networkmanager-openvpn
+    networkmanager-openconnect
+  ];
 }

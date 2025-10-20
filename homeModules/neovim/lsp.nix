@@ -2,17 +2,24 @@
 {
   programs.neovim.extraConfig = ''
     lua << EOF
-      local lspconfig = require('lspconfig')
+      -- Get capabilities from nvim-cmp for LSP
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
       
       -- C/C++ LSP (clangd)
-      lspconfig.clangd.setup({
+      vim.lsp.config('clangd', {
         cmd = { 'clangd' },
         filetypes = { 'c', 'cpp' },
-        root_dir = lspconfig.util.root_pattern('.clangd', 'compile_commands.json', '.git'),
+        root_markers = { '.clangd', 'compile_commands.json', '.git' },
+        capabilities = capabilities,
       })
+      vim.lsp.enable('clangd')
       
       -- Nix LSP (nil)
-      lspconfig.nil_ls.setup({
+      vim.lsp.config('nil_ls', {
+        cmd = { 'nil' },
+        filetypes = { 'nix' },
+        root_markers = { 'flake.nix', '.git' },
+        capabilities = capabilities,
         settings = {
           ['nil'] = {
             formatting = {
@@ -21,9 +28,14 @@
           },
         },
       })
+      vim.lsp.enable('nil_ls')
       
       -- Rust LSP (rust-analyzer)
-      lspconfig.rust_analyzer.setup({
+      vim.lsp.config('rust_analyzer', {
+        cmd = { 'rust-analyzer' },
+        filetypes = { 'rust' },
+        root_markers = { 'Cargo.toml', '.git' },
+        capabilities = capabilities,
         settings = {
           ['rust-analyzer'] = {
             cargo = {
@@ -35,6 +47,15 @@
           },
         },
       })
+      vim.lsp.enable('rust_analyzer')
     EOF
   '';
+
+  home.packages = with pkgs; [
+    clang-tools
+    nil # Nix LSP
+    nixpkgs-fmt # Nix formatter
+    rust-analyzer # Rust LSP
+    clippy # Rust linter
+  ];
 }
