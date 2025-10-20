@@ -9,8 +9,14 @@
     enableAllFirmware = true;
     firmware = [ pkgs.linux-firmware ];
     cpu.amd.updateMicrocode = true;
-    graphics.enable = true;
   };
+
+  
+  hardware.graphics.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.open = true;  # see the note above
+
+
 
   networking.networkmanager.enable = true;
 
@@ -34,4 +40,14 @@
   # options = "--delete-older-than 7d";
   # };
   # systemd.services.nix-gc.enable = false;
+
+
+    programs.steam = {
+  enable = true; # Master switch, already covered in installation
+  remotePlay.openFirewall = true;  # For Steam Remote Play
+  dedicatedServer.openFirewall = true; # For Source Dedicated Server hosting
+  # Other general flags if available can be set here.
+};
+# Tip: For improved gaming performance, you can also enable GameMode:
+ programs.gamemode.enable = true;
 }

@@ -60,5 +60,7 @@
     ripgrep
     fd
     gcc
+    steam-run
+    teamspeak6-client
   ];
 }
