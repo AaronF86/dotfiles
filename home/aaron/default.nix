@@ -10,11 +10,9 @@
     obs-studio
     vscode
     gradle
-    jdk
     vesktop
     pkgs-master.foxglove-studio
     jetbrains.idea-ultimate
-
 
     # Development Tools
     clang-tools
@@ -23,6 +21,8 @@
     rust-analyzer # Rust LSP
     clippy # Rust linter
   ];
+programs.java.enable = true;
+  programs.java.package = pkgs.jdk25;
 
   imports = [
     ../../homeModules/zen.nix
@@ -34,3 +34,4 @@
     ../../homeModules/ssh.nix
   ];
 }
+

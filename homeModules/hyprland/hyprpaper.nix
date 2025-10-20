@@ -13,7 +13,7 @@
         "~/Pictures/wallpapers/wallpaper1.png"
       ];
 
-      wallpaper = [ ",~/Pictures/wallpapers/wallpaper1.png" ];
+      wallpaper = ",~/Pictures/wallpapers/wallpaper1.png";
     };
   };
 

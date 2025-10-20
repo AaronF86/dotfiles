@@ -12,7 +12,33 @@
         height = 36;
         output = [ "*" ];
         modules-left = [ "custom/logo" "hyprland/workspaces" ];
-        modules-right = [ "network" "custom/vpn" "custom/language" "clock" "battery" ];
+        modules-right = [ "pulseaudio" "bluetooth" "network" "custom/vpn" "custom/language" "battery" "clock" ];
+
+        "pulseaudio" = {
+          format = "{icon} {volume}%";
+          format-muted = " Muted";
+          format-icons = {
+            headphone = "";
+            hands-free = "";
+            headset = "";
+            phone = "";
+            portable = "";
+            car = "";
+            default = ["" "" ""];
+          };
+          on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+          on-click-right = "pavucontrol";
+        };
+
+        "bluetooth" = {
+          format = " {status}";
+          format-disabled = ""; # an empty format will hide the module
+          format-connected = " {num_connections}";
+          tooltip-format = "{controller_alias}\n{num_connections} connected";
+          tooltip-format-connected = "{controller_alias}\n{num_connections} connected\n\n{device_enumerate}";
+          tooltip-format-enumerate-connected = "{device_alias}";
+          on-click = "blueman-manager";
+        };
 
         "custom/logo" = {
           format = "";

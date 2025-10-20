@@ -17,5 +17,6 @@
     ../../modules/DesktopEnvironments/hyprland.nix
     ../../modules/loginManagers/ly.nix
     ./modules/hardware.nix
+    ../../modules/bluetooth.nix
   ];
 }

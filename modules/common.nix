@@ -12,8 +12,12 @@
     wget
     zip
     unzip
+    brightnessctl  # Brightness control
+    playerctl      # Media player control
+    pavucontrol    # PulseAudio volume control GUI
   ];
 
+services.orca.enable = true;
   # Locale settings
   i18n = {
     defaultLocale = "en_GB.UTF-8";
@@ -30,6 +34,14 @@
   programs.fish.enable = true;
 
   virtualisation.docker.enable = true;
+
+  # Enable power management
+  services.upower = {
+    enable = true;
+    percentageLow = 15;
+    percentageCritical = 5;
+    percentageAction = 3;
+  };
 
   nix.settings = {
     experimental-features = [ "flakes" "nix-command" ];
