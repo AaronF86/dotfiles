@@ -12,9 +12,9 @@
     wget
     zip
     unzip
-    brightnessctl  # Brightness control
-    playerctl      # Media player control
-    pavucontrol    # PulseAudio volume control GUI
+    brightnessctl
+    playerctl
+    rclone
   ];
 
 services.orca.enable = true;

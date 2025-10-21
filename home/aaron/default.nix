@@ -22,7 +22,6 @@
     clippy # Rust linter
   ];
 programs.java.enable = true;
-  programs.java.package = pkgs.jdk25;
 
   imports = [
     ../../homeModules/zen.nix
