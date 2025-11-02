@@ -24,5 +24,10 @@
     friendly-snippets
     
     lspsaga-nvim
+    
+    # Org-mode plugins
+    org-roam-nvim
+    sqlite-lua
+    headlines-nvim
   ];
 }

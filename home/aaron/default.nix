@@ -12,7 +12,6 @@
     gradle
     vesktop
     pkgs-master.foxglove-studio
-    jetbrains.idea-ultimate
 
     # Development Tools
     clang-tools
@@ -20,6 +19,10 @@
     nixpkgs-fmt # Nix formatter
     rust-analyzer # Rust LSP
     clippy # Rust linter
+  sqlite
+    jetbrains.idea-ultimate
+
+    libreoffice
   ];
 programs.java.enable = true;
 

@@ -10,7 +10,7 @@
     plugins = [
       {
         name = "tide";
-        src = pkgs.fishPlugins.tide;
+        src = pkgs.fishPlugins.tide.src;
       }
     ];
   };
